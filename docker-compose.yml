@@ -1,0 +1,36 @@
+version: '2'
+services:
+  # producer:
+
+  # consumer:
+
+  zk:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    build: kafka-docker/.
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zk:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+  kafka-manager:
+    image: sheepkiller/kafka-manager
+    ports:
+      - "29000:9000"
+    environment:
+      ZK_HOSTS: zk:2181
+    links:
+      - kafka
+      - zk
+    depends_on:
+      - kafka
+  mongodb:
+    image: mongo:3.0.1
+    ports:
+      - "27017:27017"
+    command: --smallfiles
