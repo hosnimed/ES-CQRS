@@ -1,4 +1,4 @@
-package com.yetanotherdevblog;
+package com.github.hosnimed;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

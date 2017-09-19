@@ -1,4 +1,4 @@
-package com.yetanotherdevblog;
+package com.github.hosnimed;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
